@@ -1,0 +1,26 @@
+{
+  "name": "websocket-chatroom",
+  "version": "1.0.0",
+  "description": "This is a websocket server for chat room demo",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/FridayDai/websocket-chatRoom.git"
+  },
+  "keywords": [
+    "websocket",
+    "chat"
+  ],
+  "author": "fridaydai",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/FridayDai/websocket-chatRoom/issues"
+  },
+  "homepage": "https://github.com/FridayDai/websocket-chatRoom#readme",
+  "devDependencies": {
+    "ws": "^6.1.4"
+  }
+}
