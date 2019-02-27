@@ -59,7 +59,7 @@ wss.on('connection', function connection(ws, req) {
     });
   });
 
-  ws.send('connect ws success');
+  ws.send(JSON.stringify({'ts': new Date().getTime(), 'ip': ip, 'data': ''}));
 });
 
 console.log('websocket server is running...');
