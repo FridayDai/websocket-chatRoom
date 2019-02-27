@@ -44,9 +44,13 @@ wss.on('connection', function connection(ws, req) {
         Object.assign(msg, {'ts': new Date().getTime(), 'ip': ip, 'data': message});
 
         try {
-          client.send(msg, function ack(error) {
-            console.error('send [%s] error', msg);
-            console.error(error);
+          client.send(JSON.stringify(msg), function ack(error) {
+            if(error) {
+              console.error('send [%s] error', JSON.stringify(msg));
+              console.error(error);
+            } else {
+              console.log('send [%s] success', JSON.stringify(msg));
+            }
           });
         } catch (e) {
           console.error('Uncaught Exception: ' + e);
