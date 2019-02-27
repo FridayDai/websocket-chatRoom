@@ -8,9 +8,9 @@
     <button onclick="sendMessage()">send message</button>
 
     <script>
-      var ws = new WebSocket("ws://localhost:65534");
+      var ws = new WebSocket("ws://106.15.93.13:65534");
       ws.onopen = function () {
-        console.log('Connection to server opened');
+        console.log('Connection to server success');
       };
       ws.onmessage = function(data) {
         console.log(data);

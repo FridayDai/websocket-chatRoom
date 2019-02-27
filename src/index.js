@@ -27,11 +27,35 @@ const wss = new WebSocket.Server({
   }
 });
 
-wss.on('connection', function connection(ws) {
+const msg = {
+  'ts': '',
+  'ip': '',
+  'data': ''
+};
+
+wss.on('connection', function connection(ws, req) {
+  const ip = req.connection.remoteAddress;
+
   ws.on('message', function incoming(message) {
-    console.log('received: %s', message);
-    ws.send(message);
+    console.log(new Date().toLocaleString() + ' received: %s', message);
+    wss.clients.forEach(function (client) {
+      // client !== ws &&
+      if(client.readyState === WebSocket.OPEN) {
+        Object.assign(msg, {'ts': new Date().getTime(), 'ip': ip, 'data': message});
+
+        try {
+          client.send(msg, function ack(error) {
+            console.error('send [%s] error', msg);
+            console.error(error);
+          });
+        } catch (e) {
+          console.error('Uncaught Exception: ' + e);
+        }
+      }
+    });
   });
+
+  ws.send('connect ws success');
 });
 
 console.log('websocket server is running...');
